@@ -9,26 +9,31 @@ interface IScoopProp {
 const Scoops: Function = () => {
   const [scoops, setScoops] = useState([] as IScoopProp[]);
   const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
+    setIsLoading(true);
     axios
       .get("https://localhost:3030/scoops")
       .then((response) => {
         setScoops(response.data);
         setError(false);
-
+        setIsLoading(false);
       })
       .catch((error) => {
         setError(true);
+        setIsLoading(false);
       });
   }, []);
   const body = error ? (
     <div style={{ color: "red" }}>An unexpected problem occured!</div>
   ) : scoops.length ? (
     scoops.map((item) => <div key={item.name}>{`${item.name} scoop`}</div>)
+  ) : isLoading ? (
+    <div>Loading</div>
   ) : (
-    <div>No Scoops found!</div>
+    <div>No items found!</div>
   );
-  return (<div>{body}</div>);
+  return <div>{body}</div>;
 };
 
 export default Scoops;
