@@ -2,12 +2,12 @@ import react, { useEffect, useState } from "react";
 import axios from "axios";
 // import { response } from "msw";
 
-interface IScoopProp {
+interface IScoop {
   name: string;
   imagePath: string;
 }
-const Scoops: Function = () => {
-  const [scoops, setScoops] = useState([] as IScoopProp[]);
+const Scoops: react.FC = () => {
+  const [scoops, setScoops] = useState([] as IScoop[]);
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {

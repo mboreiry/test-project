@@ -3,7 +3,7 @@ import Scoops from "../../components/scoops";
 import { server } from "../../mocks/server";
 import { rest } from 'msw';
 
-// describe("Scoops tests group", () => {
+describe("service call tests", () => {
 test("scoops are loaded", async () => {
   render(<Scoops />);
   const scoops = await screen.findAllByText(/scoop$/i);
@@ -33,4 +33,18 @@ test("empty list", async () => {
   screen.debug();
   expect(emptyError).toBeInTheDocument();
 });
+});
+
+
+// await waitForElementToBeRemoved(() =>
+// screen.queryByText(/no ice cream will actually be delivered/i)
+// );
+
+
+// await waitFor(async () => {
+//   const alerts = await screen.findAllByRole('alert');
+//   expect(alerts).toHaveLength(2);
 // });
+
+
+// wrapping
